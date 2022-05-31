@@ -1,0 +1,26 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+{% endblock %}
+
+
+{% block subtitulo %}
+
+{% endblock %}
+
+
+{% block cuerpo %}
+
+
+<form method="post"> {% csrf_token %}
+    {{ formulario.as_p}}
+    <input type="submit" value="Iniciar Sesion">
+
+</form>
+
+
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>AMERICA</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+<h2>Esperiencias en America</h2>
+{% endblock %}
+
+
+{% block cuerpo %}
+
+<form action="{% url 'postAmerica' %}" method="POST"> {% csrf_token %}
+    <table>
+        {{formulario.as_table}}
+    </table>
+    <input type="submit" value="Postear">
+
+</form>
+
+{% for posteo in posteo %}
+
+ <li>{{posteo}}</li>
+<button>
+    <a href="{% url 'eliminarPosteos' posteo.titulo %}"> Eliminar </a>
+</button>
+<button>
+    <a href="{% url 'editarPosteos' posteo.titulo %}"> Editar </a>
+</button>
+
+ {% endfor %}
+
+
+{% endblock %}
+

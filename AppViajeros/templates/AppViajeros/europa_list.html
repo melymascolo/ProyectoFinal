@@ -1,0 +1,40 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>EUROPA</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+<h2>Esperiencias en Europa</h2>
+{% endblock %}
+
+
+{% block cuerpo %}
+
+
+{% for posteo in object_list %}
+
+<li>{{posteo}}</li>
+
+<button>
+    <a href="{% url 'europa_detalle' posteo.id %}"> Detalle</a>
+</button>
+<button>
+    <a href="{% url 'europa_editar' posteo.id %}"> Editar</a>
+</button>
+<button>
+    <a href="{% url 'europa_borrar' posteo.id %}"> Borrar</a>
+</button>
+
+{% endfor %}
+
+<p>
+    <a href="{% url 'europa_crear' %}"> Nuevo Posteo</a>
+</p>
+
+
+{% endblock %}
+
