@@ -1,11 +1,13 @@
 from msilib.schema import ListView
+from urllib import request
 from django.shortcuts import render
+
 from .models import *
 from django.http import HttpResponse
-from AppViajeros.forms import formularioPost
+from AppViajeros.forms import formularioPost, formularioRegistroUser
 from django.views.generic import *
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
 
@@ -92,10 +94,29 @@ def login_request(request):
                 login(request, user)
                 return render(request, 'AppViajeros/home.html', {'usuario':usuario, 'mensaje': 'Bienvenido'})
             else:
-                return render(request, 'AppViajeros/home.html', {'mensaje': 'Usuario incorrecto, vuelva a intentarlo'})
+                return render(request, 'AppViajeros/login.html', {'formulario': formulario, 'mensaje': 'Usuario incorrecto, vuelva a intentarlo'})
         else:
-            return render(request, 'AppViajeros/home.html', {'mensaje': 'Formulario invalido, vuelva a intentarlo'})
+            return render(request, 'AppViajeros/login.html', {'formulario': formulario, 'mensaje': 'Formulario invalido, vuelva a intentarlo'})
     else:
         formulario=AuthenticationForm()
         return render(request, 'AppViajeros/login.html', {'formulario':formulario})
+
+def register(request):
+    if request.method == 'POST':
+        formulario = formularioRegistroUser(request.POST)
+        if formulario.is_valid():
+            username=formulario.cleaned_data['username']
+            formulario.save()
+            return render(request, 'AppViajeros/home.html', {'mensaje':f'El usuario {username} ha sido creado exitosamente'})
+        else:
+            return render(request, 'AppViajeros/home.html', {'mensaje': 'No se pudo crear el usuario'})
+    else:
+        formulario = formularioRegistroUser()
+        return render(request, 'AppViajeros/register.html', {'formulario': formulario})
+
+
+
+
+
+
 

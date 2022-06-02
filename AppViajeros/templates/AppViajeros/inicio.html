@@ -34,8 +34,16 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'europa' %}">Europa</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">Acerca de mi</a></li>
                         <li class="nav-item"><a class="btn btn-primary" href="#signup">Sign Up</a></li>
+                    
+                    {% if user.is_authenticated %}
+                        <li><b>{{ user.get_username }}</b></li>
+                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout'%}">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'login'%}">Login</a></li>
+                    {% endif %}
                         
                     </ul>
+                  </ul>
                 </div>
             </div>
         </nav>

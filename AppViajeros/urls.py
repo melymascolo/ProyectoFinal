@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
    
@@ -8,13 +9,16 @@ urlpatterns = [
     path('eliminarPosteos/<titulo>', eliminarPosteos, name='eliminarPosteos'),
     path('editarPosteos/<titulo>', editarPosteos, name='editarPosteos'),
     
-    path('europa', europa, name='europa'),
-    path('europa/list/', PosteosList.as_view(), name='europa_listar'),
-    path('posteo/<pk>', PosteoDetalle.as_view(), name='europa_detalle'),
-    path('posteo/nuevo/', PosteoCreacion.as_view(), name='europa_crear'),
-    path('posteo/editar/<pk>', PosteoEdicion.as_view(), name='europa_editar'),
+    
+    path('europa/pages', PosteosList.as_view(), name='europa'),
+    path('pages/<pk>', PosteoDetalle.as_view(), name='europa_detalle'),
+    path('europa/nuevo/', PosteoCreacion.as_view(), name='europa_crear'),
+    path('europa/editar/<pk>', PosteoEdicion.as_view(), name='europa_editar'),
     path('europa/borrar/<pk>', PosteoEliminacion.as_view(), name='europa_borrar'),
-    path('login', login_request, name='login'),
+    
+    path('accounts/login', login_request, name='login'),
+    path('accounts/signup', register, name='register'),
+    path('accounts/logout', LogoutView.as_view(template_name='AppViajeros/logout.html'), name='logout'),
 
 
 ]

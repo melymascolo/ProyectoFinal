@@ -3,17 +3,24 @@
 {% load static %}
 
 {% block titulo %}
-{{ mensaje }}
+Registro de Usuarios:
 {% endblock %}
 
 
 {% block subtitulo %}
-<h2> {{usuario}} </h2>
+
 {% endblock %}
 
 
 {% block cuerpo %}
 
 
+<form method="post"> {% csrf_token %}
+    {{ formulario.as_p }}
+    <input type="submit" value="Registro">
+
+</form>
+
 
 {% endblock %}
+
