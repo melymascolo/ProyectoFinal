@@ -1,0 +1,31 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>AVATAR</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+
+{% endblock %}
+
+
+{% block cuerpo %}
+<h3>Cargar Avatar</h3>
+
+<form action="{% url 'agregarAvatar' %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+    
+    <table>
+        {{formulario.as_table}}
+    </table>
+
+    <input type="submit" value="Agregar">
+
+</form>
+
+
+
+{% endblock %}
+

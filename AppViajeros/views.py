@@ -4,11 +4,17 @@ from django.shortcuts import render
 
 from .models import *
 from django.http import HttpResponse
-from AppViajeros.forms import formularioPost, formularioRegistroUser
+from AppViajeros.forms import formularioPost, formularioRegistroUser, UserEditForm, AvatarForm
 from django.views.generic import *
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
+def home(request):
+    avatar = Avatar.objects.filter(user=request.user)
+    return render(request, 'AppViajeros/home.html', {'url': avatar[0].avatar.url})
 
 
 def postAmerica(request):
@@ -114,6 +120,40 @@ def register(request):
         formulario = formularioRegistroUser()
         return render(request, 'AppViajeros/register.html', {'formulario': formulario})
 
+@login_required
+def editarPerfil(request):
+    usuario=request.user
+
+    if request.method == 'POST':
+        formulario = UserEditForm(request.POST, instance=usuario)
+        if formulario.is_valid():
+            informacion=formulario.cleaned_data
+            usuario.email=informacion['email']
+            usuario.password1=informacion['password1']
+            usuario.password2=informacion['password2']          
+            usuario.save()
+
+            return render(request, 'AppViajeros/home.html', {'usuario': usuario, 'mensaje': 'Perfil editado con exito'})
+    else:
+        formulario = UserEditForm(instance=usuario)
+    return render(request, 'AppViajeros/editarPerfil.html', {'formulario': formulario, 'usuario':usuario.username})
+
+@login_required
+def agregarAvatar(request):
+    user=User.objects.get(username=request.user)
+    if request.method == 'POST':
+        formulario=AvatarForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            
+            avatarViejo=Avatar.objects.get(user=request.user)
+            if(avatarViejo.avatar):
+                avatarViejo.delete()
+            avatar = Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
+            avatar.save()
+            return render (request, 'AppViajeros/home.html', {'usuario':user, 'mensaje':'Tu avatar fue agregado'})
+    else:
+        formulario=AvatarForm()
+    return render(request, 'AppViajeros/agregarAvatar.html', {'formulario':formulario, 'usuario':user})
 
 
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class America(models.Model):
     titulo = models.CharField(max_length=40)
@@ -40,3 +41,10 @@ class Oceania(models.Model):
     cuerpo = models.CharField(max_length=500)
     autor = models.CharField(max_length=50)
     fecha = models.CharField(max_length=30)
+
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='avatar', null=True, blank=True)
+    
+    def __str__(self):
+        return self.user
