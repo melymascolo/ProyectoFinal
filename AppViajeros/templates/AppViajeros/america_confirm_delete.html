@@ -8,12 +8,16 @@
 
 
 {% block subtitulo %}
-<h2>Esperiencias en America!</h2>
+<h2>Esperiencias en America</h2>
 {% endblock %}
 
 
 {% block cuerpo %}
 
+<form method="POST"> {% csrf_token %}
+    Estas seguro que deseas borrar este posteo "{{ object }}"?
+    <input type="submit" value="Si">
+</form>
 
 
 {% endblock %}

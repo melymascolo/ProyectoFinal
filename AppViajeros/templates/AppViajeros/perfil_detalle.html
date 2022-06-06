@@ -1,0 +1,35 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>Perfil</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+<h2>INFO DE PERFIL</h2>
+{% endblock %}
+
+
+{% block cuerpo %}
+
+
+ <li>Usuario: {{usuario}}</li>
+
+<p> <i>{{usuario.username}}</i></p>
+<p><i>{{usuario.email}}</i></p>
+<p><i>{{usuario.password1}}</i></p>
+<p><i>{{usuario.password2}}</i></p>
+
+    <button>
+    <a href="{% url 'editarPerfil' %}">Editar Datos</a>
+    </button>
+    <button>
+    <a href="{% url 'agregarAvatar' %}">Agregar Avatar</a>
+    </button>
+</p>
+
+
+{% endblock %}
+

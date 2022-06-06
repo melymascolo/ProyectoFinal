@@ -8,12 +8,21 @@
 
 
 {% block subtitulo %}
-<h2>Esperiencias en America!</h2>
+<h2>Esperiencias en America</h2>
 {% endblock %}
 
 
 {% block cuerpo %}
 
+<p>Titulo: <i>{{america.titulo}}</i></p>
+
+<p>Autor: <i>{{america.autor}}</i></p>
+
+<p> 
+    <a href="{% url 'america' %}">Regresar</a>
+    
+</p>
 
 
 {% endblock %}
+

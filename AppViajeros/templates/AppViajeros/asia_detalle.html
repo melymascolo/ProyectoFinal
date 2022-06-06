@@ -1,0 +1,28 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>ASIA</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+<h2>Esperiencias en Asia</h2>
+{% endblock %}
+
+
+{% block cuerpo %}
+
+<p>Titulo: <i>{{asia.titulo}}</i></p>
+
+<p>Autor: <i>{{asia.autor}}</i></p>
+
+<p> 
+    <a href="{% url 'asia' %}">Regresar</a>
+    
+</p>
+
+
+{% endblock %}
+

@@ -3,38 +3,35 @@
 {% load static %}
 
 {% block titulo %}
-<h1>EUROPA</h1>
+<h1>AFRICA</h1>
 {% endblock %}
 
 
 {% block subtitulo %}
-<h2>Esperiencias en Europa</h2>
+<h2>Esperiencias en Africa</h2>
 {% endblock %}
 
 
 {% block cuerpo %}
-
 <div class="col-sm-12 text-center">
-    <a class="btn btn-primary"  href="{% url 'europa_crear' %}"> Nuevo Posteo</a>
+    <a class="btn btn-primary"  href="{% url 'africa_crear' %}"> Nuevo Posteo</a>
 </div>
-
 
 {% for posteo in object_list %}
 
 <li>{{posteo}}</li>
 
 <button>
-    <a href="{% url 'europa_detalle' posteo.id %}"> Leer mas</a>
+    <a href="{% url 'africa_detalle' posteo.id %}"> Leer mas</a>
 </button>
 <button>
-    <a href="{% url 'europa_editar' posteo.id %}"> Editar</a>
+    <a href="{% url 'africa_editar' posteo.id %}"> Editar</a>
 </button>
 <button>
-    <a href="{% url 'europa_borrar' posteo.id %}"> Borrar</a>
+    <a href="{% url 'africa_borrar' posteo.id %}"> Borrar</a>
 </button>
 
 {% endfor %}
-
 
 
 {% endblock %}

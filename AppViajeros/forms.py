@@ -11,9 +11,9 @@ class formularioPost(forms.Form):
     fecha = forms.CharField(max_length=30)
 
 class formularioRegistroUser(UserCreationForm):
-    email = forms.EmailField(required=True)
-    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
+    email = forms.EmailField(required = True)
+    password1 = forms.CharField(label = "Contraseña", widget=forms.PasswordInput)
+    password2 = forms.CharField(label = "Confirmar contraseña", widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -24,6 +24,7 @@ class UserEditForm(UserCreationForm):
     email= forms.EmailField(label="Modificar email")
     password1 = forms.CharField(label="Modificar Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
+
    
     class Meta:
         model = User

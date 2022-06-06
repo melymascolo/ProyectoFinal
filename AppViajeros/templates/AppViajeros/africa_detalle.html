@@ -1,0 +1,28 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>AFRICA</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+<h2>Esperiencias en Africa</h2>
+{% endblock %}
+
+
+{% block cuerpo %}
+
+<p>Titulo: <i>{{africa.titulo}}</i></p>
+
+<p>Autor: <i>{{africa.autor}}</i></p>
+
+<p> 
+    <a href="{% url 'africa' %}">Regresar</a>
+    
+</p>
+
+
+{% endblock %}
+
