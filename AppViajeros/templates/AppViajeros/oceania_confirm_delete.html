@@ -1,0 +1,23 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>OCEANIA</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+<h2>Esperiencias en Oceania</h2>
+{% endblock %}
+
+
+{% block cuerpo %}
+
+<form method="POST"> {% csrf_token %}
+    Estas seguro que deseas borrar este posteo "{{ object }}"?
+    <input type="submit" value="Si">
+</form>
+
+
+{% endblock %}

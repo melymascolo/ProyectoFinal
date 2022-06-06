@@ -14,9 +14,13 @@
 
 {% block cuerpo %}
 
-<p>Titulo: <i>{{africa.titulo}}</i></p>
-
-<p>Autor: <i>{{africa.autor}}</i></p>
+<p><h1><i>{{africa.titulo}}</i></p></h1>
+<p><i>{{africa.subtitulo}}</i></p>
+<p><i>{{africa.lugar}}</i></p>
+<p><i>{{africa.experiencia}}</i></p>
+<p>Escrito por:<i>{{africa.autor}}</i></p>
+<p>Fecha de publicación:<i>{{africa.fecha}}</i></p>
+<p><i>{{africa.imagen}}</i></p>
 
 <p> 
     <a href="{% url 'africa' %}">Regresar</a>

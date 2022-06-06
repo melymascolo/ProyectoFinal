@@ -1,0 +1,26 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>OCEANIA</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+<h2>Esperiencias en Oceania</h2>
+{% endblock %}
+
+
+{% block cuerpo %}
+
+
+<form method="post"> {% csrf_token %}
+    {{ form.as_p}}
+    <input type="submit" value="Enviar">
+
+</form>
+
+
+{% endblock %}
+

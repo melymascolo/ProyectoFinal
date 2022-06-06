@@ -1,0 +1,38 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>OCEANIA</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+<h2>Esperiencias en Oceania</h2>
+{% endblock %}
+
+
+{% block cuerpo %}
+<div class="col-sm-12 text-center">
+    <a class="btn btn-primary"  href="{% url 'oceania_crear' %}"> Nuevo Posteo</a>
+</div>
+
+{% for posteo in object_list %}
+
+<li>{{posteo}}</li>
+
+<button>
+    <a href="{% url 'oceania_detalle' posteo.id %}"> Leer mas</a>
+</button>
+<button>
+    <a href="{% url 'oceania_editar' posteo.id %}"> Editar</a>
+</button>
+<button>
+    <a href="{% url 'oceania_borrar' posteo.id %}"> Borrar</a>
+</button>
+
+{% endfor %}
+
+
+{% endblock %}
+

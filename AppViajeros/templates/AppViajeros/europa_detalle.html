@@ -14,11 +14,13 @@
 
 {% block cuerpo %}
 
-<p><h1>Titulo: <i>{{europa.titulo}}</i></p></h1>
-<p>Subtitulo: <i>{{europa.subtitulo}}</i></p>
-<p>Cuerpo: <i>{{europa.cuerpo}}</i></p>
-<p>Autor: <i>{{europa.autor}}</i></p>
-<p>Fecha: <i>{{europa.fecha}}</i></p>
+<p><h1><i>{{europa.titulo}}</i></p></h1>
+<p><i>{{europa.subtitulo}}</i></p>
+<p><i>{{europa.lugar}}</i></p>
+<p><i>{{europa.experiencia}}</i></p>
+<p>Escrito por:<i>{{europa.autor}}</i></p>
+<p>Fecha de publicación:<i>{{europa.fecha}}</i></p>
+<p><i>{{europa.imagen}}</i></p>
 
 <p> 
     <a href="{% url 'europa' %}">Regresar</a>
