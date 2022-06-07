@@ -15,7 +15,7 @@
 {% block cuerpo %}
 <h3>Cargar Avatar</h3>
 
-<form action="{% url 'agregarAvatar' %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+<form action="{% url 'agregarAvatar' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
     
     <table>
         {{formulario.as_table}}

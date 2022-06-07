@@ -17,8 +17,8 @@ def home(request):
     return render (request, 'AppViajeros/home.html')
 
 def inicio(request):
-    imagen = America.objects.filter(imagen=request.imagen)
-    return render(request, 'AppViajeros/inicio.html', {'url': imagen[0].imagenes.url})
+    avatar=Avatar.objects.filter(user=request.user)
+    return render(request, 'AppViajeros/home.html', {'url': avatar[0].avatar.url})
 
 def aboutMe(request):
     return render(request, 'AppViajeros/aboutMe.html')  
@@ -41,7 +41,7 @@ class PosteoDetalleAm(DetailView):
 class PosteoCreacionAm(CreateView):
     model = America
     success_url = reverse_lazy('america')
-    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha', 'imagen']
+    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
 class PosteoEdicionAm(UpdateView):
     model = America
@@ -71,7 +71,7 @@ class PosteoDetalleEu(DetailView):
 class PosteoCreacionEu(CreateView):
     model = Europa
     success_url = reverse_lazy('europa')
-    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha', 'imagen']
+    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
 class PosteoEdicionEu(UpdateView):
     model = Europa
@@ -99,7 +99,7 @@ class PosteoDetalleAf(DetailView):
 class PosteoCreacionAf(CreateView):
     model = Africa
     success_url = reverse_lazy('africa')
-    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha', 'imagen']
+    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
 class PosteoEdicionAf(UpdateView):
     model = Africa
@@ -127,7 +127,7 @@ class PosteoDetalleAs(DetailView):
 class PosteoCreacionAs(CreateView):
     model = Asia
     success_url = reverse_lazy('asia')
-    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha', 'imagen']
+    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
 class PosteoEdicionAs(UpdateView):
     model = Asia
@@ -156,7 +156,7 @@ class PosteoDetalleOc(DetailView):
 class PosteoCreacionOc(CreateView):
     model = Oceania
     success_url = reverse_lazy('oceania')
-    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha', 'imagen']
+    fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
 class PosteoEdicionOc(UpdateView):
     model = Oceania
@@ -196,9 +196,8 @@ def register(request):
         if formulario.is_valid():
             username=formulario.cleaned_data['username']
             formulario.save()
-            return render(request, 'AppViajeros/home.html', {'mensaje':f'El usuario {username} ha sido creado exitosamente'})
-        else:
-            return render(request, 'AppViajeros/home.html', {'mensaje':'No se pudo crear el usuario'})
+        return render(request, 'AppViajeros/home.html', {'mensaje':f'El usuario {username} ha sido creado exitosamente, inicie sesion.'})
+        
     else:
         formulario = formularioRegistroUser()
         return render(request, 'AppViajeros/register.html', {'formulario': formulario})
@@ -232,12 +231,14 @@ def agregarAvatar(request):
     if request.method == 'POST':
         formulario=AvatarForm(request.POST, request.FILES)
         if formulario.is_valid():
+
             avatarViejo=Avatar.objects.get(user=request.user)
             if(avatarViejo.avatar):
                 avatarViejo.delete()
-            avatar = Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
+
+            avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
             avatar.save()
-            return render (request, 'AppViajeros/home.html', {'usuario':user, 'mensaje':'Tu avatar fue agregado'})
+            return render(request, 'AppViajeros/home.html', {'usuario':user, 'mensaje':'Tu avatar fue agregado'})
     else:
         formulario=AvatarForm()
     return render(request, 'AppViajeros/agregarAvatar.html', {'formulario':formulario, 'usuario':user})
