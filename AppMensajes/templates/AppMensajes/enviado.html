@@ -1,0 +1,22 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h2>Gracias! </h2>
+{% endblock %}
+
+
+{% block subtitulo %}
+   
+Tu mensaje ha sido enviado con exito!
+
+{% endblock %}
+
+
+{% block cuerpo %}
+<div class="col-sm-12 text-center">
+    <a class="btn btn-primary"  href="{% url 'home' %}"> Volver al Blog</a>
+</div>
+
+{% endblock %}

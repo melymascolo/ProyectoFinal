@@ -18,7 +18,7 @@ def home(request):
 
 def inicio(request):
     avatar=Avatar.objects.filter(user=request.user)
-    return render(request, 'AppViajeros/home.html', {'url': avatar[0].avatar.url})
+    return render(request, 'AppViajeros/inicio.html', {'url':avatar[0].avatar.url})
 
 def aboutMe(request):
     return render(request, 'AppViajeros/aboutMe.html')  
@@ -223,7 +223,6 @@ def editarPerfil(request):
 def mostrarPerfil(request):
     usuario=request.user
     return render (request, 'AppViajeros/perfil_detalle.html', {'usuario':usuario})
-    
 
 @login_required
 def agregarAvatar(request):
@@ -241,4 +240,4 @@ def agregarAvatar(request):
             return render(request, 'AppViajeros/home.html', {'usuario':user, 'mensaje':'Tu avatar fue agregado'})
     else:
         formulario=AvatarForm()
-    return render(request, 'AppViajeros/agregarAvatar.html', {'formulario':formulario, 'usuario':user})
+    return render(request, 'AppViajeros/agregarAvatar.html', {'formulario':formulario, 'usuario':user})   

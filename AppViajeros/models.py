@@ -68,5 +68,3 @@ class Avatar(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatar', null=True, blank=True)
 
-    def __str__(self):
-        return self.user

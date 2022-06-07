@@ -9,9 +9,12 @@ def inicio(request):
 
 class crearMensaje(CreateView):
     model = Mensaje
-    success_url = reverse_lazy('nuevo')
+    success_url = reverse_lazy('enviado')
     fields=['emisor','mensaje','receptor']
 
 class MensajeList(ListView):
     model = Mensaje
     template_name = 'AppMensajeria/mensaje_list.hmtl'
+
+def enviado(request):
+    return render(request, 'AppMensajes/enviado.html')
