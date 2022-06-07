@@ -1,0 +1,24 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>Envia un mensaje:</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+   
+    
+
+{% endblock %}
+
+
+{% block cuerpo %}
+
+<form method="post"> {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Enviar Mensaje">
+</form>
+
+{% endblock %}

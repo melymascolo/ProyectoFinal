@@ -1,0 +1,28 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>Todos tus mensajes:</h1>
+{% endblock %}
+
+
+{% block subtitulo %}
+   
+    
+
+{% endblock %}
+
+
+{% block cuerpo %}
+
+
+{% for mensaje in object_list %}
+
+<li>{{mensaje}}</li> 
+
+{% endfor %}
+
+
+
+{% endblock %}

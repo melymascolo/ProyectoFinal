@@ -1,0 +1,22 @@
+{% extends "AppViajeros/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h2>No perdamos el contacto! </h2>
+{% endblock %}
+
+
+{% block subtitulo %}
+   
+Podes contactarte con otros usuarios aqui!
+
+{% endblock %}
+
+
+{% block cuerpo %}
+<div class="col-sm-12 text-center">
+    <a class="btn btn-primary"  href="{% url 'nuevo' %}"> Nuevo Mensaje</a>
+</div>
+
+{% endblock %}
