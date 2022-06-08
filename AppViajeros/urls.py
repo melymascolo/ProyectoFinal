@@ -5,8 +5,9 @@ from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
-   
-    path('', home, name='home'),
+
+    path('', inicio, name='inicio'),
+    path('home', home, name='home'),
     path('about/', aboutMe, name='about'),
 
     path('america/pages/', PosteosListAm.as_view(), name='america'),

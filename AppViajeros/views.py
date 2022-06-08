@@ -19,13 +19,11 @@ def home(request):
 
 
 def inicio(request):
-        return render (request, 'AppViajeros/home.html')
-
+    return render (request, 'AppViajeros/inicio.html')
+   
 
 def aboutMe(request):
     return render(request, 'AppViajeros/aboutMe.html')  
-
-
 
 
 def america(request):
@@ -57,7 +55,6 @@ class PosteoEliminacionAm(DeleteView):
 
 
 
-#--------------------------EUROPA----------------------------
 def europa(request):
     return render(request, 'AppViajeros/europa.html')
 
@@ -85,7 +82,7 @@ class PosteoEliminacionEu(DeleteView):
     success_url = reverse_lazy('europa')
     fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
-#---------------------AFRICA----------------------------
+
 def africa(request):
     return render(request, 'AppViajeros/africa.html')
 
@@ -113,7 +110,6 @@ class PosteoEliminacionAf(DeleteView):
     success_url = reverse_lazy('africa')
     fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
-#-----------------------------------ASIA---------------------------------------
 def asia(request):
     return render(request, 'AppViajeros/asia.html')
 
@@ -142,7 +138,7 @@ class PosteoEliminacionAs(DeleteView):
     fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
 
-#-----------------------------OCEANIA------------------------------
+
 def oceania(request):
     return render(request, 'AppViajeros/oceania.html')
 
@@ -171,8 +167,6 @@ class PosteoEliminacionOc(DeleteView):
     fields=['titulo','subtitulo','lugar','experiencia','autor','fecha']
 
 
-
-#------------------
 def login_request(request):
     if request.method == "POST":
         formulario = AuthenticationForm(request=request, data=request.POST)
@@ -184,8 +178,8 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                avatar=Avatar.objects.filter(user=request.user)
-                return render(request, 'AppViajeros/home.html', {'usuario':usuario, 'mensaje': 'Bienvenido', 'url':avatar[0].avatar.url})
+
+                return render(request, 'AppViajeros/home.html', {'usuario':usuario, 'mensaje': f'Bienvenido'})
             else:
                 return render(request, 'AppViajeros/login.html', {'mensaje': 'Error, datos incorrectos'})
         else:
@@ -201,7 +195,7 @@ def register(request):
         if formulario.is_valid():
             username=formulario.cleaned_data['username']
             formulario.save()
-            return render(request, 'AppViajeros/home.html', {'mensaje':f'El usuario {username} ha sido creado exitosamente, inicie sesion.'})
+            return render(request, 'AppViajeros/inicio.html', {'mensaje':f'El usuario {username} ha sido creado exitosamente, inicie sesion.'})
         else:
             return render(request, 'AppViajeros/inicio.html', {'mensaje': 'No se pudo crear el usuario'})
     else:
@@ -237,7 +231,7 @@ def agregarAvatar(request):
         formulario=AvatarForm(request.POST, request.FILES)
         if formulario.is_valid():
 
-            avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
+            avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'] )
             avatar.save()
             return render(request, 'AppViajeros/home.html', {'usuario':user, 'mensaje':'Tu avatar fue agregado'})
     else:

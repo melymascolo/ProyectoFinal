@@ -38,8 +38,10 @@
                         <li class="nav-item"><a class="btn btn-primary" href="{% url 'register' %}">Sign Up</a></li>              
                                                
                     {% if request.user.is_authenticated %}
+                        
                         <p class="text-muted small mb-4 mb-lg-0"> {{user}} </p>
-                     
+                        
+                                                                         
                        
                         <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout'%}">Salir</a></li> 
                     
@@ -60,11 +62,14 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             {% block titulo %}
+                            Hola Viajeros!
                             {% endblock %}
                             <span class="subheading">          
                                 {% block subtitulo %}
                                 
                                 {{mensaje}}
+                            <class="nav-item"><a class="btn btn-warning" href="{% url 'perfil' %}">Perfil</a>
+                            <class="nav-item"><a class="btn btn-warning" href="{% url 'portada' %}">Mensajes</a>
 
                                 {% endblock %} </span>
                         </div>
@@ -73,8 +78,8 @@
             </div>
         </header>
         {% block cuerpo %}
-        
+        <h3> Gracias por ingresar a nuestro blog, por favor inicia sesión o registrate</h3>
         {% endblock %}
 
-        <!-- Main Content-->
+
        

@@ -42,7 +42,7 @@
                         
                     {% if request.user.is_authenticated %}
                         <p class="text-muted small mb-4 mb-lg-0"> {{user}} </p>
-
+                                             
                     
                         <class="nav-item"><a class="btn btn-primary" href="{% url 'logout'%}">Salir</a>
                     {% else %}
@@ -61,12 +61,13 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             {% block titulo %}
+                            <img src="{{url}}" width="40" height="40"/> 
                             {% endblock %}
                             <span class="subheading">          
                                 {% block subtitulo %}
                                 <h2> {{mensaje}}
                                      {{usuario}} 
-                                     <img src="{{url}}" width="40" height="40"/>
+                                     
                                     </h2>
                                 <class="nav-item"><a class="btn btn-warning" href="{% url 'perfil' %}">Perfil</a>
                                 <class="nav-item"><a class="btn btn-warning" href="{% url 'portada' %}">Mensajes</a>
