@@ -14,11 +14,13 @@ from django.contrib.auth.models import User
 
 
 def home(request):
-    return render (request, 'AppViajeros/home.html')
+    avatar=Avatar.objects.filter(user=request.user)
+    return render(request, 'AppViajeros/home.html', {'url':avatar[0].avatar.url})
+
 
 def inicio(request):
-    avatar=Avatar.objects.filter(user=request.user)
-    return render(request, 'AppViajeros/inicio.html', {'url':avatar[0].avatar.url})
+        return render (request, 'AppViajeros/home.html')
+
 
 def aboutMe(request):
     return render(request, 'AppViajeros/aboutMe.html')  
@@ -182,7 +184,8 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                return render(request, 'AppViajeros/home.html', {'usuario':usuario, 'mensaje': 'Bienvenido'})
+                avatar=Avatar.objects.filter(user=request.user)
+                return render(request, 'AppViajeros/home.html', {'usuario':usuario, 'mensaje': 'Bienvenido', 'url':avatar[0].avatar.url})
             else:
                 return render(request, 'AppViajeros/login.html', {'mensaje': 'Error, datos incorrectos'})
         else:
