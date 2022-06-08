@@ -3,12 +3,12 @@
 {% load static %}
 
 {% block titulo %}
-<h1>Perfil</h1>
+<h1>PERFIL</h1>
 {% endblock %}
 
 
 {% block subtitulo %}
-<h2>INFO DE PERFIL</h2>
+<h2>Información de Perfil</h2>
 {% endblock %}
 
 
@@ -21,6 +21,7 @@
 <p><i>{{usuario.email}}</i></p>
 <p><i>{{usuario.password1}}</i></p>
 <p><i>{{usuario.password2}}</i></p>
+
 
     <button>
     <a href="{% url 'editarPerfil' %}">Editar Datos</a>

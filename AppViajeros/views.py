@@ -179,13 +179,15 @@ def login_request(request):
             clave = formulario.cleaned_data.get('password')
 
             user=authenticate(username=usuario, password=clave)
+
             if user is not None:
                 login(request, user)
                 return render(request, 'AppViajeros/home.html', {'usuario':usuario, 'mensaje': 'Bienvenido'})
             else:
-                return render(request, 'AppViajeros/login.html', {'formulario': formulario, 'mensaje': 'Usuario incorrecto, vuelva a intentarlo'})
+                return render(request, 'AppViajeros/login.html', {'mensaje': 'Error, datos incorrectos'})
         else:
             return render(request, 'AppViajeros/login.html', {'formulario': formulario, 'mensaje': 'Formulario invalido, vuelva a intentarlo'})
+    
     else:
         formulario=AuthenticationForm()
         return render(request, 'AppViajeros/login.html', {'formulario':formulario})
@@ -196,8 +198,9 @@ def register(request):
         if formulario.is_valid():
             username=formulario.cleaned_data['username']
             formulario.save()
-        return render(request, 'AppViajeros/home.html', {'mensaje':f'El usuario {username} ha sido creado exitosamente, inicie sesion.'})
-        
+            return render(request, 'AppViajeros/home.html', {'mensaje':f'El usuario {username} ha sido creado exitosamente, inicie sesion.'})
+        else:
+            return render(request, 'AppViajeros/inicio.html', {'mensaje': 'No se pudo crear el usuario'})
     else:
         formulario = formularioRegistroUser()
         return render(request, 'AppViajeros/register.html', {'formulario': formulario})
@@ -215,7 +218,7 @@ def editarPerfil(request):
             usuario.password2=informacion['password2']          
             usuario.save()
 
-            return render(request, 'AppViajeros/inicio.html', {'usuario': usuario, 'mensaje': 'Perfil editado con exito'})
+            return render(request, 'AppViajeros/home.html', {'usuario': usuario, 'mensaje': 'Perfil editado con exito'})
     else:
         formulario = UserEditForm(instance=usuario)
     return render(request, 'AppViajeros/editarPerfil.html', {'formulario': formulario, 'usuario':usuario.username})
@@ -231,13 +234,9 @@ def agregarAvatar(request):
         formulario=AvatarForm(request.POST, request.FILES)
         if formulario.is_valid():
 
-            avatarViejo=Avatar.objects.get(user=request.user)
-            if(avatarViejo.avatar):
-                avatarViejo.delete()
-
             avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
             avatar.save()
             return render(request, 'AppViajeros/home.html', {'usuario':user, 'mensaje':'Tu avatar fue agregado'})
     else:
         formulario=AvatarForm()
-    return render(request, 'AppViajeros/agregarAvatar.html', {'formulario':formulario, 'usuario':user})   
+        return render(request, 'AppViajeros/agregarAvatar.html', {'formulario':formulario, 'usuario':user})   

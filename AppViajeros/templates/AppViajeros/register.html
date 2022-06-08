@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-Registro de Usuarios:
+REGISTRO DE USUARIOS:
 {% endblock %}
 
 
@@ -16,7 +16,7 @@ Registro de Usuarios:
 
 <form method="post"> {% csrf_token %}
     {{ formulario.as_p }}
-    <input type="submit" value="Registro">
+    <input type="submit" value="Registrar">
 </form>
 
 
